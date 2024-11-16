@@ -33,6 +33,8 @@ function Cards (){
       ];
            
     return <>
+
+
     <div className="w-full h-screen bg-zinc-500 flex items-center justify-center gap-10 flex-wrap">
 
 {products.map((product,index)=>(

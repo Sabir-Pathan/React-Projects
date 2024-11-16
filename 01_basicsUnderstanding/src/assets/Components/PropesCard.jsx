@@ -1,7 +1,7 @@
 import React from "react";
 
-function PropesCard({ Values , btnClicked}) {
-  let { image, name, profession, cityName, friendStatus } = Values;
+function PropesCard({ Values,btnHandler,index }) {
+  let { image, name, profession, cityName, friendStatus} = Values;
   return (
     <div className="w-[15vw] h-[30vh] flex items-center justify-center flex-col bg-zinc-300 rounded">
       <div className="w-[50%] h-[45%] m-1">
@@ -16,10 +16,10 @@ function PropesCard({ Values , btnClicked}) {
         <h1 className="text-sm text-blue-500">{profession}</h1>
         <h1>{cityName}</h1>
         <button
-          onClick={btnClicked}
-          className={` ${"bg-blue-600"} text-white px-3 py-1 rounded font-bold mt-3`}
+          onClick={()=>btnHandler(index)}
+          className={` ${friendStatus?"bg-blue-600":"bg-red-600"} text-white px-3 py-1 font-sm rounded mt-3`}
         >
-          {friendStatus ? "Friend" : "Add Freind"}
+          {friendStatus ? 'Friends' : 'Add Friends'}
         </button>
       </div>
     </div>

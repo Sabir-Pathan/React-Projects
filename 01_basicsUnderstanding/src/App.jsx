@@ -30,7 +30,7 @@ function App() {
       name: "Rahul Verma",
       profession: "Teacher",
       cityName: "Bengaluru",
-      friendStatus: false,
+      friendStatus: true,
     },
     {
       image:
@@ -49,13 +49,17 @@ function App() {
       friendStatus: true,
     },
   ];
-  let [data, setData] = useState({ people });
 
-  let btnClickHandle = ()=>{
-    return useState (prev=>prev.filter((item,index)=>{
-      return item.friendStatus===true;
-    }))
-  }
+  let [data, setData] = useState(people);
+
+function changeStatus (cardIndex){
+  return setData(prev=>prev.map((item , index)=>{
+if(cardIndex===index){
+ return {...item, friendStatus: !item.friendStatus}
+}
+    return item;
+  }))
+}
 
  
   return (
@@ -71,10 +75,12 @@ function App() {
     <Propes text='No More' colorName="bg-red-700" />
     <Propes text='Download Now' colorName="bg-green-700" /> */}
 
-      <div className="w-[100%] h-screen bg-zinc-200 flex items-center justify-center gap-2 flex-wrap">
-        {people.map((item) => (
-          <PropesCard Values={item} btnClicked={btnClickHandle} />
+      <div className="w-[100%] h-screen bg-zinc-200 flex flex-wrap items-center justify-center gap-2 ">
+
+        {data.map((item,index) => (
+          <PropesCard Values={item} btnHandler={changeStatus} index={index}/>
         ))}
+        
       </div>
     </>
   );
