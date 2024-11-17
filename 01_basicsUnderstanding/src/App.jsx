@@ -5,6 +5,7 @@ import Counter from "./assets/Components/Counter";
 import Propes from "./assets/Components/Propes";
 import PropesCard from "./assets/Components/PropesCard";
 import { useState } from "react";
+import PropesNavbar from "./assets/Components/PropesNavbar";
 
 function App() {
   const people = [
@@ -53,7 +54,7 @@ function App() {
   let [data, setData] = useState(people);
 
 function changeStatus (cardIndex){
-  return setData(prev=>prev.map((item , index)=>{
+  return setData(prev=>prev.map((item,index)=>{
 if(cardIndex===index){
  return {...item, friendStatus: !item.friendStatus}
 }
@@ -76,10 +77,13 @@ if(cardIndex===index){
     <Propes text='Download Now' colorName="bg-green-700" /> */}
 
       <div className="w-[100%] h-screen bg-zinc-200 flex flex-wrap items-center justify-center gap-2 ">
-
-        {data.map((item,index) => (
+        <PropesNavbar data={data}/>
+<div className="flex">
+{data.map((item,index) => (
           <PropesCard Values={item} btnHandler={changeStatus} index={index}/>
         ))}
+</div>
+        
         
       </div>
     </>
