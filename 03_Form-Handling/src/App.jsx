@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import Cards from "./Components/Cards";
 import Form from "./Components/Form";
 
-
-function App (){
-
+function App() {
   const people = [
     {
       image:
@@ -22,17 +20,27 @@ function App (){
       cityName: "Bengaluru",
       Added: true,
     },
-   
   ];
 
-let [data,setData]=useState(people)
+  const [data, setData] = useState(people);
 
-  return <>
-  <div className="h-full w-full flex flex-col items-center justfy-center">
-  <Cards data={data}/>    
-    <Form/>
-  </div>
-  </>
+  function handleForm(newdata) {
+    setData((prevData) => [...prevData,newdata]);
+  }
+
+  function handleRemove (id){
+setData(data.filter((item,index)=>id !=index))
+  }
+
+  return (
+    <>
+      <div className="bg-zinc-300 h-full w-full flex flex-col items-center justify-center">
+        <Cards data={data} handleRemove={handleRemove}/>
+        <Form handleForm={handleForm} />
+      </div>
+    </>
+  );
 }
 
-export default App
+export default App;
+ 
